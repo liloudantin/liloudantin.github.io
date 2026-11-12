@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lilou Dantin — Bioacoustique sous-marine</title>
-  <meta name="description" content="Lilou Dantin, ingénieure et doctorante en bioacoustique sous-marine au Laboratoire d'Informatique et Systèmes (Toulon).">
+  <title>Lilou Dantin — Underwater Bioacoustics</title>
+  <meta name="description" content="Lilou Dantin, engineer and PhD candidate in underwater bioacoustics at the Laboratoire d'Informatique et Systèmes (Toulon, France).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -72,12 +72,6 @@
       max-width: 600px;
       opacity: 0.85;
     }
-    .hero nav { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-    .hero nav a {
-      color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500;
-      padding: 6px 14px; border: 1px solid rgba(255,255,255,0.35); border-radius: 999px;
-    }
-    .hero nav a:hover { background: rgba(255,255,255,0.12); }
 
     main { padding: 48px 0 24px; }
     section { margin-bottom: 56px; }
@@ -111,14 +105,6 @@
       padding: 2px 8px; border-radius: 999px;
     }
 
-    .events { list-style: none; }
-    .events li { font-weight: 500; padding: 3px 0 3px 18px; position: relative; }
-    .events li::before {
-      content: ""; position: absolute; left: 0; top: 0.75em;
-      width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
-    }
-    .events .note { color: var(--muted); font-weight: 400; }
-
     .langs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
     .lang {
       background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
@@ -127,9 +113,9 @@
     .lang strong { display: block; }
     .lang span { color: var(--muted); font-size: 0.9rem; }
 
-    /* Barre d'avancement verticale */
+    /* Vertical scroll progress bar (stays below the blue header) */
     .progress {
-      position: fixed; left: 28px; top: 12vh; bottom: 12vh; width: 3px;
+      position: fixed; left: 28px; top: 24px; bottom: 24px; width: 3px;
       background: var(--line); border-radius: 3px; z-index: 10;
     }
     .progress-fill {
@@ -156,9 +142,6 @@
       .progress a { width: 9px; height: 9px; }
       .progress a span { display: none; }
     }
-    @media (prefers-reduced-motion: no-preference) {
-      .progress-fill { transition: height .08s linear; }
-    }
 
     footer {
       text-align: center; color: var(--muted); font-size: 0.85rem;
@@ -175,15 +158,8 @@
   <header class="hero">
     <div class="wrap">
       <h1>Lilou Dantin</h1>
-      <p class="role">Doctorante &amp; ingénieure d'études en bioacoustique sous-marine</p>
-      <p class="pitch">Ingénieure généraliste de formation, je mène un doctorat pluridisciplinaire alliant biologie marine et ingénierie, consacré à la modélisation des scènes acoustiques sous-marines pour l'étude des cétacés.</p>
-      <nav>
-        <a href="#experiences">Expériences</a>
-        <a href="#missions">Missions</a>
-        <a href="#conferences">Conférences</a>
-        <a href="#formation">Formation</a>
-        <a href="#langues">Langues</a>
-      </nav>
+      <p class="role">PhD candidate &amp; research engineer in underwater bioacoustics</p>
+      <p class="pitch">Trained as a general engineer, I am pursuing an interdisciplinary PhD combining marine biology and engineering, focused on modelling underwater acoustic scenes for the study of cetaceans.</p>
     </div>
     <svg class="waves" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
       <path fill="var(--bg)" d="M0,32 C240,64 480,0 720,24 C960,48 1200,8 1440,30 L1440,60 L0,60 Z"/>
@@ -191,193 +167,194 @@
   </header>
 
   <main class="wrap">
-    <section id="experiences">
-      <h2>Expériences professionnelles</h2>
+    <section id="experience">
+      <h2>Professional experience</h2>
       <ul class="timeline">
         <li class="item">
-          <div class="when">Avril 2025 – aujourd'hui</div>
+          <div class="when">Apr 2025 – present</div>
           <div class="what">
-            <h3>Doctorat en bioacoustique <span class="badge">En cours</span></h3>
+            <h3>PhD in bioacoustics <span class="badge">Ongoing</span></h3>
             <div class="org">Laboratoire d'Informatique et Systèmes (LIS)</div>
-            <p>Modélisation complète des scènes acoustiques sous-marines pour l'étude des cétacés.</p>
+            <p>Comprehensive modelling of underwater acoustic scenes for the study of cetaceans.</p>
             <div class="place">Toulon, France</div>
           </div>
         </li>
         <li class="item">
-          <div class="when">Janv. 2025 – aujourd'hui</div>
+          <div class="when">Jan 2025 – present</div>
           <div class="what">
-            <h3>Ingénieure d'études bioacousticienne <span class="badge">En cours</span></h3>
+            <h3>Bioacoustics research engineer <span class="badge">Ongoing</span></h3>
             <div class="org">Laboratoire d'Informatique et Systèmes (LIS)</div>
             <div class="place">Toulon, France</div>
           </div>
         </li>
         <li class="item">
-          <div class="when">Mai – Oct. 2024</div>
+          <div class="when">May – Oct 2024</div>
           <div class="what">
-            <h3>Stage de fin d'études</h3>
+            <h3>Master's thesis internship</h3>
             <div class="org">Reef Pulse</div>
-            <p>Intelligence artificielle appliquée à la biophonie des récifs coralliens.</p>
-            <div class="place">Saint-Denis, La Réunion</div>
+            <p>Artificial intelligence applied to coral reef biophony.</p>
+            <div class="place">Saint-Denis, Réunion Island</div>
           </div>
         </li>
         <li class="item">
-          <div class="when">Juil. – Août 2023</div>
+          <div class="when">Jul – Aug 2023</div>
           <div class="what">
-            <h3>Stage de recherche</h3>
+            <h3>Research internship</h3>
             <div class="org">Aquarium des Lagons</div>
-            <p>Suivi de population de <em>Stegostoma tigrinum</em> (requin léopard).</p>
-            <div class="place">Nouméa, Nouvelle-Calédonie</div>
+            <p>Population monitoring of <em>Stegostoma tigrinum</em> (leopard shark).</p>
+            <div class="place">Nouméa, New Caledonia</div>
           </div>
         </li>
         <li class="item">
-          <div class="when">Janv. – Juin 2023</div>
+          <div class="when">Jan – Jun 2023</div>
           <div class="what">
-            <h3>Projet STORALG</h3>
+            <h3>STORALG project</h3>
             <div class="org">IKOS Consulting</div>
-            <p>Innovation sur le stockage massif de CO₂ par microalgues.</p>
+            <p>Innovation in large-scale CO₂ storage using microalgae.</p>
             <div class="place">Montpellier, France</div>
           </div>
         </li>
       </ul>
     </section>
 
-    <section id="missions">
-      <h2>Missions de terrain</h2>
+    <section id="fieldwork">
+      <h2>Field missions</h2>
       <ul class="timeline">
         <li class="item">
           <div class="when">2026</div>
           <div class="what">
-            <h3>SP12 — Science participative <span class="badge">Terrain</span></h3>
+            <h3>SP12 — Citizen science <span class="badge">Field</span></h3>
             <div class="org">Longitude 181</div>
-            <p>Bioacousticienne : enregistrements acoustiques sur le terrain.</p>
+            <p>Bioacoustician: on-field acoustic recording.</p>
           </div>
         </li>
         <li class="item">
           <div class="when">2026</div>
           <div class="what">
-            <h3>Port Pothuau <span class="badge">Organisation</span></h3>
-            <p>Bioacousticienne en mission de terrain et organisatrice de la mission.</p>
+            <h3>Port Pothuau <span class="badge">Organiser</span></h3>
+            <p>Bioacoustician on field mission and mission organiser.</p>
           </div>
         </li>
         <li class="item">
-          <div class="when">Mars 2026</div>
+          <div class="when">Mar 2026</div>
           <div class="what">
-            <h3>Mission Grand Large</h3>
+            <h3>Grand Large mission</h3>
             <div class="org">Explore et Préserve</div>
           </div>
         </li>
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
-            <h3>WhaleWay 6 <span class="badge">Terrain</span></h3>
-            <p>Bioacousticienne en mission de terrain.</p>
+            <h3>WhaleWay 6 <span class="badge">Field</span></h3>
+            <p>Bioacoustician on field mission.</p>
           </div>
         </li>
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
-            <h3>Expérimentation wingfoil — Port Hélène</h3>
-            <p>Bioacousticienne : enregistrement des émissions acoustiques de différents wingfoils.</p>
+            <h3>Wingfoil experiment — Port Hélène</h3>
+            <p>Bioacoustician: recording the acoustic emissions of different wingfoils.</p>
           </div>
         </li>
       </ul>
     </section>
 
     <section id="conferences">
-      <h2>Conférences &amp; séminaires</h2>
+      <h2>Conferences &amp; seminars</h2>
       <ul class="timeline">
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
-            <h3>UNOC — Conférence des Nations unies sur l'océan</h3>
-            <p>Présentation d'un article.</p>
+            <h3>UNOC — United Nations Ocean Conference</h3>
+            <p>Paper presentation.</p>
           </div>
         </li>
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
             <h3>JJBA</h3>
-            <p>Présentation d'un article.</p>
+            <p>Paper presentation.</p>
           </div>
         </li>
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
-            <h3>Comité National du sanctuaire Pelagos</h3>
-            <p>Présentation orale.</p>
+            <h3>National Committee of the Pelagos Sanctuary</h3>
+            <p>Oral presentation.</p>
           </div>
         </li>
         <li class="item">
-          <div class="when">Févr. 2023</div>
+          <div class="when">Feb 2023</div>
           <div class="what">
             <h3>Water4Future Hackathon</h3>
-            <div class="org">Concours international étudiant sur l'eau</div>
-            <p>Participation au hackathon.</p>
+            <div class="org">International student competition on water</div>
+            <p>Hackathon participant.</p>
             <div class="place">Montpellier, France</div>
           </div>
         </li>
       </ul>
     </section>
 
-    <section id="formation">
-      <h2>Formation</h2>
+    <section id="education">
+      <h2>Education</h2>
       <ul class="timeline">
         <li class="item">
           <div class="when">2023 – 2024</div>
           <div class="what">
-            <h3>Master d'ingénierie — Numérique et Vivant</h3>
+            <h3>Engineering Master's — Digital &amp; Living Systems</h3>
             <div class="org">CentraleSupélec</div>
-            <p>Dominante Systèmes Communicants et Objets Connectés.</p>
+            <p>Major in Communicating Systems and Connected Objects.</p>
             <div class="place">Rennes, France</div>
           </div>
         </li>
         <li class="item">
           <div class="when">2019 – 2024</div>
           <div class="what">
-            <h3>Diplôme d'ingénieure</h3>
-            <div class="org">EPF École d'ingénieurs</div>
-            <p>Parcours d'ingénierie généraliste, puis spécialisation Énergie et Environnement.</p>
-            <div class="place">Sceaux / Cachan, puis Montpellier, France</div>
+            <h3>Engineering degree</h3>
+            <div class="org">EPF Engineering School</div>
+            <p>General engineering curriculum, then specialisation in Energy and Environment.</p>
+            <div class="place">Sceaux / Cachan, then Montpellier, France</div>
           </div>
         </li>
         <li class="item">
-          <div class="when">Sept. 2022 – Janv. 2023</div>
+          <div class="when">Sep 2022 – Jan 2023</div>
           <div class="what">
-            <h3>Semestre Erasmus</h3>
+            <h3>Erasmus semester</h3>
             <div class="org">BME — Budapest University of Technology and Economics</div>
-            <div class="place">Budapest, Hongrie</div>
+            <div class="place">Budapest, Hungary</div>
           </div>
         </li>
         <li class="item">
-          <div class="when">2023 – aujourd'hui</div>
+          <div class="when">2023 – present</div>
           <div class="what">
-            <h3>MOOC Conservation</h3>
-            <div class="org">UICN — PAPACO</div>
-            <p>Nouvelles technologies au service des aires protégées.</p>
-            <div class="place">Formation en ligne</div>
+            <h3>Conservation MOOC</h3>
+            <div class="org">IUCN — PAPACO</div>
+            <p>New technologies for protected areas.</p>
+            <div class="place">Online</div>
           </div>
         </li>
       </ul>
     </section>
 
-    <section id="langues">
-      <h2>Langues</h2>
+    <section id="languages">
+      <h2>Languages</h2>
       <div class="langs">
-        <div class="lang"><strong>Français</strong><span>Certification Voltaire</span></div>
-        <div class="lang"><strong>Anglais</strong><span>B2+ · TOEIC 925</span></div>
-        <div class="lang"><strong>Espagnol</strong><span>B1</span></div>
+        <div class="lang"><strong>French</strong><span>Voltaire certification</span></div>
+        <div class="lang"><strong>English</strong><span>B2+ · TOEIC 925</span></div>
+        <div class="lang"><strong>Spanish</strong><span>B1</span></div>
       </div>
     </section>
   </main>
 
   <footer>© 2026 Lilou Dantin</footer>
 
-  <nav class="progress" aria-label="Progression dans la page">
+  <nav class="progress" aria-label="Page progress">
     <div class="progress-fill"></div>
   </nav>
 
   <script>
     (function () {
+      var hero = document.querySelector('header.hero');
       var bar = document.querySelector('.progress');
       var fill = bar.querySelector('.progress-fill');
       var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
@@ -397,7 +374,7 @@
         return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
       }
 
-      // Position de chaque point : la proportion de défilement à laquelle sa section arrive en haut
+      // Each dot sits at the scroll ratio where its section reaches the top of the screen
       function layout() {
         var max = maxScroll();
         stops = sections.map(function (s) {
@@ -409,6 +386,10 @@
       }
 
       function update() {
+        // Keep the bar below the blue header while it is visible
+        var heroBottom = hero.getBoundingClientRect().bottom;
+        bar.style.top = Math.max(24, heroBottom + 16) + 'px';
+
         var ratio = Math.min(1, Math.max(0, window.scrollY / maxScroll()));
         fill.style.height = (ratio * 100) + '%';
         var active = -1;
