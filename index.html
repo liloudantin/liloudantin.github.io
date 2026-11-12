@@ -115,13 +115,40 @@
     .lang strong { display: block; }
     .lang span { color: var(--muted); font-size: 0.9rem; }
 
-    /* Freediver progress */
+    /* Vertical progress bar with freediver icon */
     .progress {
-      position: fixed; left: 12px; top: 24px; bottom: 24px; width: 40px;
-      pointer-events: none; z-index: 10;
+      position: fixed; left: 28px; top: 24px; bottom: 24px; width: 3px;
+      background: var(--line); border-radius: 3px; z-index: 10;
     }
-    .freediver-svg {
-      position: absolute; left: 0; width: 40px; height: 60px;
+    .progress-fill {
+      position: absolute; left: 0; top: 0; width: 100%; height: 0;
+      background: var(--accent); border-radius: 3px;
+    }
+    .freediver-icon {
+      position: absolute; left: 50%; transform: translate(-50%, -50%);
+      width: 28px; height: 36px;
+      background: url('dessin_apneiste.png') center/contain no-repeat;
+      opacity: 0.85;
+    }
+    .progress a {
+      position: absolute; left: 50%; transform: translate(-50%, -50%);
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--line);
+      transition: background .2s, border-color .2s;
+    }
+    .progress a.passed { background: var(--accent); border-color: var(--accent); }
+    .progress a span {
+      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+      white-space: nowrap; font-size: 0.8rem; font-weight: 500;
+      color: var(--muted); transition: color .2s;
+    }
+    .progress a.active span { color: var(--accent); font-weight: 600; }
+    .progress a.active { box-shadow: 0 0 0 4px var(--accent-soft); }
+    .progress a:hover span { color: var(--text); }
+    @media (max-width: 1200px) {
+      .progress { left: 6px; }
+      .progress a { width: 9px; height: 9px; }
+      .progress a span { display: none; }
     }
 
     footer {
@@ -330,54 +357,67 @@
   <footer>© 2026 Lilou Dantin</footer>
 
   <nav class="progress" aria-label="Page progress">
-    <svg class="freediver-svg" viewBox="0 0 40 60" preserveAspectRatio="none">
-      <!-- Head -->
-      <circle cx="20" cy="12" r="6" fill="var(--accent)"/>
-      <!-- Mask -->
-      <ellipse cx="20" cy="13" rx="7" ry="5" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-      <!-- Snorkel -->
-      <line x1="26" y1="10" x2="28" y2="4" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- Body -->
-      <rect x="17" y="19" width="6" height="12" fill="var(--accent)" rx="1"/>
-      <!-- Arms -->
-      <line x1="17" y1="22" x2="10" y2="25" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="23" y1="22" x2="30" y2="25" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- Legs -->
-      <line x1="18" y1="31" x2="16" y2="45" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="22" y1="31" x2="24" y2="45" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- Fins -->
-      <path d="M 16 48 Q 12 50 14 54" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-      <path d="M 24 48 Q 28 50 26 54" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-    </svg>
+    <div class="progress-fill"></div>
+    <div class="freediver-icon"></div>
   </nav>
 
   <script>
     (function () {
       var hero = document.querySelector('header.hero');
       var bar = document.querySelector('.progress');
-      var freediver = bar.querySelector('.freediver-svg');
+      var fill = bar.querySelector('.progress-fill');
+      var diver = bar.querySelector('.freediver-icon');
+      var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+      var marks = sections.map(function (s) {
+        var a = document.createElement('a');
+        a.href = '#' + s.id;
+        var label = document.createElement('span');
+        label.textContent = s.querySelector('h2').textContent;
+        a.appendChild(label);
+        a.setAttribute('aria-label', label.textContent);
+        bar.appendChild(a);
+        return a;
+      });
+      var stops = [];
 
       function maxScroll() {
         return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
       }
 
+      // Position each dot where its section reaches the top
+      function layout() {
+        var max = maxScroll();
+        stops = sections.map(function (s) {
+          var top = s.getBoundingClientRect().top + window.scrollY - 24;
+          return Math.min(1, Math.max(0, top / max));
+        });
+        marks.forEach(function (m, i) { m.style.top = (stops[i] * 100) + '%'; });
+        update();
+      }
+
       function update() {
         // Keep the bar below the blue header
         var heroBottom = hero.getBoundingClientRect().bottom;
-        var barTop = Math.max(24, heroBottom + 16);
-        bar.style.top = barTop + 'px';
+        bar.style.top = Math.max(24, heroBottom + 16) + 'px';
 
-        // Position the freediver based on scroll progress
         var ratio = Math.min(1, Math.max(0, window.scrollY / maxScroll()));
-        var barHeight = window.innerHeight - 48; // account for top/bottom spacing
-        var diverY = ratio * (barHeight - 60); // 60 is the height of the SVG
-        freediver.style.transform = 'translateY(' + diverY + 'px)';
+        fill.style.height = (ratio * 100) + '%';
+
+        // Position the freediver at the end of the progress bar
+        diver.style.top = (ratio * 100) + '%';
+
+        var active = -1;
+        stops.forEach(function (p, i) { if (ratio + 0.001 >= p) active = i; });
+        marks.forEach(function (m, i) {
+          m.classList.toggle('passed', i <= active);
+          m.classList.toggle('active', i === active);
+        });
       }
 
       window.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      window.addEventListener('load', update);
-      update();
+      window.addEventListener('resize', layout);
+      window.addEventListener('load', layout);
+      layout();
     })();
   </script>
 </body>
