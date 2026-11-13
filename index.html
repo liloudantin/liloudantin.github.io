@@ -124,6 +124,29 @@
       background: #e8d9c9; color: #8c5f0f;
       padding: 4px 8px; border-radius: 2px;
     }
+    a .badge-talk::after,
+    a .badge-poster::after {
+      content: ' ↗';
+      font-size: 0.85em;
+      margin-left: 2px;
+    }
+    .badge-org {
+      display: inline-block;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      background: #e8e8e8; color: #333333;
+      padding: 4px 8px; border-radius: 2px;
+      margin-left: 4px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .badge-org {
+        background: #3a3a3a; color: #d0d0d0;
+      }
+    }
+    a .badge-org::after {
+      content: ' ↗';
+      font-size: 0.85em;
+      margin-left: 2px;
+    }
     @media (prefers-color-scheme: dark) {
       .badge-talk {
         background: #1a4a54; color: #5cc3df;
@@ -208,9 +231,9 @@
           <div class="when">Apr 2025 – present</div>
           <div class="what">
             <h3>PhD in bioacoustics</h3>
-            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes (LIS)</a></div>
-            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics (CIAN)</a></div>
-            <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros (PNPC)</a></div>
+            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
+            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>
+            <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros <span class="badge-org">PNPC</span></a></div>
             <p>DiTOSS: Digital Twin for Odontoceti Synthetic Survey</p>
             <div class="place">Toulon, France</div>
           </div>
@@ -219,8 +242,8 @@
           <div class="when">Jan 2025 – Apr 2025</div>
           <div class="what">
             <h3>Bioacoustics research engineer </h3>
-            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes (LIS)</a></div>
-            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics (CIAN)</a></div>            <div class="place">Toulon, France</div>
+            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
+            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>            <div class="place">Toulon, France</div>
           </div>
         </li>
         <li class="item">
@@ -251,7 +274,7 @@
           <div class="when">Sep 2026</div>
           <div class="what">
             <h3>Science Participative Mission 12</h3>
-            <div class="org"><a href="https://www.longitude181.org/">Longitude 181</a></div>
+            <div class="org"><a href="https://www.longitude181.org/">Longitude <span class="badge-org">181</span></a></div>
             <p>Bioacoustician: on-field acoustic recording.</p>
             <div class="place">Mediterranean Sea</div>
           </div>
@@ -260,8 +283,8 @@
           <div class="when">May 2026</div>
           <div class="what">
             <h3>Port Pothuau Mission</h3>
-            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes (LIS)</a></div>
-            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics (CIAN)</a></div>
+            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
+            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>
             <p>Mission organiser and bioacoustician on field mission.</p>
           <div class="place">Port Porthuau, Mediterranean Sea</div>
           </div>
@@ -270,7 +293,7 @@
           <div class="when">Mar 2026 - present </div>
           <div class="what">
             <h3>Grand Large Missions</h3>
-            <div class="org"><a href="https://www.explore-preserve.org/">Explore et Préserve</a></div>
+            <div class="org"><a href="https://www.explore-preserve.org/">Explore et <span class="badge-org">Préserve</span></a></div>
             <div class="place">Mediterranean Sea</div>
           </div>
         </li>
@@ -278,7 +301,7 @@
           <div class="when">Sep 2025</div>
           <div class="what">
             <h3>WhaleWay 6 Mission</h3>
-            <div class="org"><a href="https://www.longitude181.org/">Longitude 181</a></div>
+            <div class="org"><a href="https://www.longitude181.org/">Longitude <span class="badge-org">181</span></a></div>
             <p>Bioacoustician on field mission.</p>
             <div class="place">Mediterranean Sea</div>
           </div>
@@ -287,9 +310,9 @@
           <div class="when">2025</div>
           <div class="what">
             <h3>Wingfoil experiment</h3>
-            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes (LIS)</a></div>
-            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics (CIAN)</a></div>
-            <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros (PNPC)</a></div>
+            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
+            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>
+            <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros <span class="badge-org">PNPC</span></a></div>
             <p>Bioacoustician: recording the acoustic emissions of different wingfoils.</p>
             <div class="place">Port Hélène, Mediterranean Sea</div>
           </div>
@@ -305,7 +328,7 @@
           <div class="what">
             <h3>Séminaire LISSÉ</h3>
             <div class="org">Laboratoire interdisciplinaire de simulation socio-écologique (LISSÉ)</div>
-            <div class="org"><a href="https://gremm.org/">GROUPE DE RECHERCHE ET D'ÉDUCATION SUR LES MAMMIFÈRES MARINS (GREMM)</a></div>
+            <div class="org"><a href="https://gremm.org/">GROUPE DE RECHERCHE ET D'ÉDUCATION SUR LES MAMMIFÈRES MARINS <span class="badge-org">GREMM</span></a></div>
             <p><span class="badge-talk">Talk</span>Whale ecology of Saint Lawrence, underwater noise, AI in acoustics and imaging, and conservation of belugas and other cetaceans.</p>
             <div class="place">Tadoussac, Quebec, Canada</div>
           </div>
@@ -314,17 +337,17 @@
           <div class="when">Dec 2025</div>
           <div class="what">
             <h3>Séminaire EUROPAM 2026</h3>
-            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes (LIS)</a></div>
-            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics (CIAN)</a></div>
-            <p><span class="badge-talk">Talk</span><a href="https://cian.lis-lab.fr/wp-content/uploads/2026/01/05-Propagation-model-for-range-estimation-perspective-on-megafauna-localisation-with-in-situ-experiments-EUROPAM20251211.pdf">Presentation here</a>. (Co-organization)</p>
+            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
+            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>
+            <p><a href="https://youtu.be/_iNO20PW4OE?si=zwM6UHAoK1xLQpjb&t=1124"><span class="badge-talk">Talk</span></a> (Co-organization)</p>
           </div>
         </li>
         <li class="item">
           <div class="when">Dec 2025</div>
           <div class="what">
             <h3>Séminaire du collectif national sur le bruit sous-marin</h3>
-            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes (LIS)</a></div>
-            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics (CIAN)</a></div>
+            <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
+            <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>
             <p>Co-organization.</p>
           </div>
         </li>
@@ -333,21 +356,21 @@
           <div class="what">
             <h3>One Ocean Science Congress</h3>
             <div class="org">United Nations Ocean Conference 3 (UNOC3)</div>
-            <p><span class="badge-poster">Poster</span><a href="https://meetingorganizer.copernicus.org/OOS2025/OOS2025-1564.html">here</a>.</p>
+            <p><a href="https://meetingorganizer.copernicus.org/OOS2025/OOS2025-1564.html"><span class="badge-poster">Poster</span></a></p>
           </div>
         </li>
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
             <h3>Journées des jeunes bioacousticiens (JJBA)</h3>
-            <p><span class="badge-poster">Poster</span><a href="https://cian.lis-lab.fr/jjba2025/">here</a>.</p>
+            <p><a href="https://cian.lis-lab.fr/jjba2025/"><span class="badge-poster">Poster</span></a></p>
           </div>
         </li>
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
             <h3>National Committee of the Pelagos Sanctuary</h3>
-            <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros (PNPC)</a></div>
+            <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros <span class="badge-org">PNPC</span></a></div>
             <p><span class="badge-talk">Talk</span></p>
           </div>
         </li>
@@ -405,7 +428,7 @@
           <div class="when">2023</div>
           <div class="what">
             <h3>Conservation MOOC</h3>
-            <div class="org"><a href="https://www.mooc-conservation.org/">IUCN PAPACO</a></div>
+            <div class="org"><a href="https://www.mooc-conservation.org/">IUCN <span class="badge-org">PAPACO</span></a></div>
             <p>New technologies for protected areas.</p>
             <div class="place">Online</div>
           </div>
