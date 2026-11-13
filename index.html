@@ -98,6 +98,12 @@
     .what h3 a { font-size: 0.75rem; font-weight: 400; opacity: 0.6; transition: opacity .2s; }
     .what h3 a:hover { opacity: 1; }
     .what .org { color: var(--accent); font-weight: 500; font-size: 0.95rem; }
+    .what .org a::after {
+      content: ' ↗';
+      font-size: 0.85em;
+      margin-left: 2px;
+      vertical-align: super;
+    }
     .what p { color: var(--muted); margin-top: 4px; font-size: 0.95rem; }
     .place { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
     .badge {
@@ -105,6 +111,26 @@
       font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
       background: var(--accent-soft); color: var(--accent);
       padding: 2px 8px; border-radius: 999px;
+    }
+    .badge-talk {
+      display: inline-block; margin-right: 8px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      background: #c9e4e8; color: #0f6e8c;
+      padding: 4px 8px; border-radius: 2px;
+    }
+    .badge-poster {
+      display: inline-block; margin-right: 8px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      background: #e8d9c9; color: #8c5f0f;
+      padding: 4px 8px; border-radius: 2px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .badge-talk {
+        background: #1a4a54; color: #5cc3df;
+      }
+      .badge-poster {
+        background: #543a1a; color: #dfb55c;
+      }
     }
 
     .langs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
@@ -222,7 +248,7 @@
       <h2>Field missions</h2>
       <ul class="timeline">
         <li class="item">
-          <div class="when">2026</div>
+          <div class="when">Sep 2026</div>
           <div class="what">
             <h3>Science Participative Mission 12</h3>
             <div class="org"><a href="https://www.longitude181.org/">Longitude 181</a></div>
@@ -231,7 +257,7 @@
           </div>
         </li>
         <li class="item">
-          <div class="when">2026</div>
+          <div class="when">May 2026</div>
           <div class="what">
             <h3>Port Pothuau Mission</h3>
             <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes (LIS)</a></div>
@@ -249,7 +275,7 @@
           </div>
         </li>
         <li class="item">
-          <div class="when">2025</div>
+          <div class="when">Sep 2025</div>
           <div class="what">
             <h3>WhaleWay 6 Mission</h3>
             <div class="org"><a href="https://www.longitude181.org/">Longitude 181</a></div>
@@ -280,7 +306,7 @@
             <h3>Séminaire LISSÉ</h3>
             <div class="org">Laboratoire interdisciplinaire de simulation socio-écologique (LISSÉ)</div>
             <div class="org"><a href="https://gremm.org/">GROUPE DE RECHERCHE ET D'ÉDUCATION SUR LES MAMMIFÈRES MARINS (GREMM)</a></div>
-            <p>Oral presentation on whale ecology of Saint Lawrence, underwater noise, AI in acoustics and imaging, and conservation of belugas and other cetaceans.</p>
+            <p><span class="badge-talk">Talk</span>Whale ecology of Saint Lawrence, underwater noise, AI in acoustics and imaging, and conservation of belugas and other cetaceans.</p>
             <div class="place">Tadoussac, Quebec, Canada</div>
           </div>
         </li>
@@ -290,7 +316,7 @@
             <h3>Séminaire EUROPAM 2026</h3>
             <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes (LIS)</a></div>
             <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics (CIAN)</a></div>
-            <p>Co-organization. <a href="https://cian.lis-lab.fr/wp-content/uploads/2026/01/05-Propagation-model-for-range-estimation-perspective-on-megafauna-localisation-with-in-situ-experiments-EUROPAM20251211.pdf">Presentation here</a>.</p>
+            <p><span class="badge-talk">Talk</span><a href="https://cian.lis-lab.fr/wp-content/uploads/2026/01/05-Propagation-model-for-range-estimation-perspective-on-megafauna-localisation-with-in-situ-experiments-EUROPAM20251211.pdf">Presentation here</a>. (Co-organization)</p>
           </div>
         </li>
         <li class="item">
@@ -303,18 +329,18 @@
           </div>
         </li>
         <li class="item">
-          <div class="when">2025</div>
+          <div class="when">Jun 2025</div>
           <div class="what">
             <h3>One Ocean Science Congress</h3>
             <div class="org">United Nations Ocean Conference 3 (UNOC3)</div>
-            <p>Poster <a href="https://meetingorganizer.copernicus.org/OOS2025/OOS2025-1564.html">here</a>.</p>
+            <p><span class="badge-poster">Poster</span><a href="https://meetingorganizer.copernicus.org/OOS2025/OOS2025-1564.html">here</a>.</p>
           </div>
         </li>
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
             <h3>Journées des jeunes bioacousticiens (JJBA)</h3>
-            <p>Poster <a href="https://cian.lis-lab.fr/jjba2025/">here</a>.</p>
+            <p><span class="badge-poster">Poster</span><a href="https://cian.lis-lab.fr/jjba2025/">here</a>.</p>
           </div>
         </li>
         <li class="item">
@@ -322,7 +348,7 @@
           <div class="what">
             <h3>National Committee of the Pelagos Sanctuary</h3>
             <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros (PNPC)</a></div>
-            <p>Oral presentation.</p>
+            <p><span class="badge-talk">Talk</span></p>
           </div>
         </li>
         <li class="item">
@@ -331,20 +357,6 @@
             <h3>Water4Future Hackathon</h3>
             <p>Hackathon participant.</p>
             <div class="place">Montpellier, France</div>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <section id="outreach">
-      <h2>Outreach</h2>
-      <ul class="timeline">
-        <li class="item">
-          <div class="when">Nov 2025</div>
-          <div class="what">
-            <h3>Journées de la science</h3>
-            <div class="org">Université de Toulon</div>
-            <div class="place">Toulon, France</div>
           </div>
         </li>
       </ul>
@@ -396,6 +408,20 @@
             <div class="org"><a href="https://www.mooc-conservation.org/">IUCN PAPACO</a></div>
             <p>New technologies for protected areas.</p>
             <div class="place">Online</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="outreach">
+      <h2>Outreach</h2>
+      <ul class="timeline">
+        <li class="item">
+          <div class="when">Nov 2025</div>
+          <div class="what">
+            <h3>Journées de la science</h3>
+            <div class="org">Université de Toulon</div>
+            <div class="place">Toulon, France</div>
           </div>
         </li>
       </ul>
