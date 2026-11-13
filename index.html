@@ -141,6 +141,18 @@
       font-size: 0.85em;
       margin-left: 2px;
     }
+    .badge-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px;
+      font-size: 0.75rem; font-weight: 700;
+      background: #e8e8e8; color: #333333;
+      border-radius: 2px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .badge-link {
+        background: #3a3a3a; color: #d0d0d0;
+      }
+    }
     @media (prefers-color-scheme: dark) {
       .badge-talk {
         background: #1a4a54; color: #5cc3df;
@@ -228,7 +240,8 @@
             <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
             <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>
             <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros <span class="badge-org">PNPC</span></a></div>
-            <p>DiTOSS: Digital Twin for Odontoceti Synthetic Survey</p>
+            <p>DiTOSS: Digital Twin for Odontoceti Synthetic Survey.<br>A simulation-to-real pipeline that trains neural networks on synthetic acoustic data to predict whale behavior. It infers sperm whale trajectories and depth from echolocation clicks recorded on hydrophones, enabling non-invasive deep-sea monitoring for conservation.
+            </p>
             <div class="place">Toulon, France</div>
           </div>
         </li>
@@ -244,8 +257,8 @@
           <div class="when">May – Oct 2024</div>
           <div class="what">
             <h3>Engineer internship</h3>
-            <div class="org"><a href="https://reef-pulse.com/fr/index.php">Reef Pulse</a></div>
-            <p>Artificial intelligence applied to coral reef biophony.</p>
+            <div class="org"><a href="https://reef-pulse.com/fr/index.php">Reef Pulse <span class="badge-link">↗</span></a></div>
+            <p>Artificial intelligence applied to coral reef biophony.<br>Automatic detection of parrotfish <i>grazing</i> and grouper <i>growls</i>. </p>
             <div class="place">Saint-Denis, Réunion Island</div>
           </div>
         </li>
@@ -253,7 +266,7 @@
           <div class="when">Jul – Aug 2023</div>
           <div class="what">
             <h3>Research internship</h3>
-            <div class="org"><a href="https://www.aquarium.nc/">Aquarium des Lagons</a></div>
+            <div class="org"><a href="https://www.aquarium.nc/">Aquarium des Lagons <span class="badge-link">↗</span></a></div>
             <p>Population monitoring of <em>Stegostoma tigrinum</em> (leopard shark).</p>
             <div class="place">Nouméa, New Caledonia</div>
           </div>
