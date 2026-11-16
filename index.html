@@ -178,6 +178,8 @@
     }
     .lang strong { display: block; }
     .lang span { color: var(--muted); font-size: 0.9rem; }
+    .langs.life { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 600px) { .langs.life { grid-template-columns: 1fr; } }
     .life .lang strong { margin-bottom: 6px; }
     .life .lang span { display: block; }
 
@@ -484,6 +486,17 @@
       </ul>
     </section>
 
+    <section id="skills">
+      <h2>Tools &amp; skills</h2>
+      <div class="langs">
+        <div class="lang"><strong>Programming &amp; markup</strong><span>Python, MATLAB, R, JavaScript, Bash, HTML, SQL, MySQL</span></div>
+        <div class="lang"><strong>Development</strong><span>VS Code, VSCodium, GitHub, Jupyter, Arduino</span></div>
+        <div class="lang"><strong>Science &amp; engineering</strong><span>QGIS, Audacity, CATIA, Zotero</span></div>
+        <div class="lang"><strong>Productivity</strong><span>Notion, Microsoft Office</span></div>
+        <div class="lang"><strong>Operating systems</strong><span>Windows, macOS, Linux</span></div>
+      </div>
+    </section>
+
     <section id="languages">
       <h2>Languages</h2>
       <div class="langs">
@@ -559,6 +572,12 @@
           var top = s.getBoundingClientRect().top + window.scrollY - 24;
           return Math.min(1, Math.max(0, top / max));
         });
+        // The last sections are too short to reach the top of the page, so their
+        // dots would pile up at 100%: space them out upwards.
+        var gap = 24 / Math.max(1, window.innerHeight - 48);
+        for (var i = stops.length - 2; i >= 0; i--) {
+          stops[i] = Math.min(stops[i], stops[i + 1] - gap);
+        }
         marks.forEach(function (m, i) { m.style.top = (stops[i] * 100) + '%'; });
         update();
       }
