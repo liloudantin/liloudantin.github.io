@@ -55,6 +55,11 @@
     }
     .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
     header.hero .wrap { padding: 0; }
+    .hero-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+    .contact { list-style: none; text-align: right; font-size: 0.95rem; flex-shrink: 0; }
+    .contact li + li { margin-top: 6px; }
+    .contact a { color: #fff; opacity: 0.9; border-bottom: 1px solid transparent; transition: opacity .2s, border-color .2s; }
+    .contact a:hover { opacity: 1; border-bottom-color: rgba(255,255,255,0.7); }
     .hero h1 {
       font-family: "Fraunces", Georgia, serif;
       font-weight: 600;
@@ -118,7 +123,14 @@
       background: #e8d9c9; color: #8c5f0f;
       padding: 4px 8px; border-radius: 2px;
     }
+    .badge-abstract {
+      display: inline-block; margin-right: 8px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      background: #e8e8e8; color: #333333;
+      padding: 4px 8px; border-radius: 2px;
+    }
     a .badge-talk::after,
+    a .badge-abstract::after,
     a .badge-poster::after {
       content: ' ↗';
       font-size: 0.85em;
@@ -169,6 +181,9 @@
       .badge-poster {
         background: #543a1a; color: #dfb55c;
       }
+      .badge-abstract {
+        background: #3a3a3a; color: #d0d0d0;
+      }
     }
 
     .langs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
@@ -180,7 +195,7 @@
     .lang span { color: var(--muted); font-size: 0.9rem; }
     .langs.life { grid-template-columns: repeat(2, 1fr); }
     @media (max-width: 600px) { .langs.life { grid-template-columns: 1fr; } }
-    .life .life-wide { grid-column: 1 / -1; }
+    .life-col { display: flex; flex-direction: column; gap: 12px; }
     .life .lang strong { margin-bottom: 6px; }
     .life .lang span { display: block; }
     .life .lang span.sub { color: var(--text); font-weight: 600; margin-top: 10px; }
@@ -228,16 +243,26 @@
 
     @media (max-width: 600px) {
       header.hero { padding: 56px 16px 76px; }
+      .hero-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .contact { text-align: left; }
       .item { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <header class="hero">
-    <div class="wrap">
-      <h1>Lilou Dantin</h1>
-      <p class="role">PhD student in underwater bioacoustics</p>
-      <p class="pitch">Trained as a general engineer, I am pursuing an interdisciplinary PhD combining marine biology and engineering, focused on modelling underwater acoustic scenes for the study of cetaceans.</p>
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <h1>Lilou Dantin</h1>
+        <p class="role">PhD student in underwater bioacoustics</p>
+        <p class="pitch">Trained as a general engineer, I am pursuing an interdisciplinary PhD combining marine biology and engineering, focused on modelling underwater acoustic scenes for the study of cetaceans.</p>
+      </div>
+      <ul class="contact">
+        <li><a href="mailto:lilou.dantin@gmail.com">lilou.dantin@gmail.com</a></li>
+        <li><a href="https://scholar.google.com/citations?user=_FrEY3MAAAAJ&amp;hl=fr&amp;oi=ao">Google Scholar ↗</a></li>
+        <li><a href="https://www.researchgate.net/profile/Lilou-Dantin-2">ResearchGate ↗</a></li>
+        <li><a href="https://www.linkedin.com/in/lilou-dantin-65a9781b5/">LinkedIn ↗</a></li>
+      </ul>
     </div>
     <svg class="waves" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
       <path fill="var(--bg)" d="M0,32 C240,64 480,0 720,24 C960,48 1200,8 1440,30 L1440,60 L0,60 Z"/>
@@ -341,9 +366,10 @@
           </div>
         </li>
         <li class="item">
-          <div class="when"></div>
+          <div class="when">2024</div>
           <div class="what">
             <h3>Volunteering at Globice</h3>
+            <div class="org"><a href="https://www.globice.org/">Globice <span class="badge-link">↗</span></a></div>
             <p>Deployment of acoustic modules.</p>
             <div class="place">La Réunion, France</div>
           </div>
@@ -388,7 +414,7 @@
           <div class="what">
             <h3>One Ocean Science Congress</h3>
             <div class="org">United Nations Ocean Conference 3 <span class="badge-org">UNOC3</span></div>
-            <p><a href="https://meetingorganizer.copernicus.org/OOS2025/OOS2025-1564.html"><span class="badge-poster">Poster</span></a></p>
+            <p><a href="https://sabiod.lis-lab.fr/pub/SEGAMAS/DANTIN_SEGAMAS_poster_OOS2025_french.pdf"><span class="badge-poster">Poster</span></a><a href="https://meetingorganizer.copernicus.org/OOS2025/OOS2025-1564.html"><span class="badge-abstract">Abstract</span></a></p>
           </div>
         </li>
         <li class="item">
@@ -416,7 +442,7 @@
           <div class="when">2023 – 2024</div>
           <div class="what">
             <h3>Engineering Master's</h3>
-            <div class="org">CentraleSupélec</div>
+            <div class="org"><a href="https://www.centralesupelec.fr/">CentraleSupélec <span class="badge-link">↗</span></a></div>
             <p>Major Digital &amp; Living Systems, in communicating systems and connected objects.</p>
             <div class="place">Rennes, France</div>
           </div>
@@ -425,7 +451,7 @@
           <div class="when">2019 – 2024</div>
           <div class="what">
             <h3>Engineering degree</h3>
-            <div class="org">EPF Engineering School</div>
+            <div class="org"><a href="https://www.epf.fr/">EPF Engineering School <span class="badge-org">EPF ↗</span></a></div>
             <p>General engineering curriculum, then specialisation in Energy and Environment.</p>
             <div class="place">Sceaux / Cachan, then Montpellier, France</div>
           </div>
@@ -491,7 +517,7 @@
           <div class="what">
             <h3>STORALG project</h3>
             <div class="org">IKOS Consulting</div>
-            <div class="org">EPF Engineering School</div>
+            <div class="org"><a href="https://www.epf.fr/">EPF Engineering School <span class="badge-org">EPF ↗</span></a></div>
             <p>Innovation in large-scale CO₂ storage using microalgae.</p>
             <div class="place">Montpellier, France</div>
           </div>
@@ -502,8 +528,8 @@
     <section id="skills">
       <h2>Tools and skills</h2>
       <div class="langs">
-        <div class="lang"><strong>Programming &amp; markup</strong><span>Python, MATLAB, R, JavaScript, Bash, HTML, SQL</span></div>
-        <div class="lang"><strong>Development</strong><span>VSCode, VSCodium, GitHub, Jupyter, MySQL, Arduino</span></div>
+        <div class="lang"><strong>Programming &amp; markup</strong><span>Python, MATLAB, R, JavaScript, Bash, HTML, SQL, LaTeX</span></div>
+        <div class="lang"><strong>Development</strong><span>VSCode, GitHub, Jupyter, MySQL, Arduino</span></div>
         <div class="lang"><strong>Science &amp; engineering</strong><span>QGIS, Audacity, CATIA</span></div>
         <div class="lang"><strong>Productivity &amp; research</strong><span>Notion, Zotero, Microsoft Office</span></div>
         <div class="lang"><strong>Operating systems</strong><span>Windows, macOS, Linux</span></div>
@@ -522,35 +548,39 @@
     <section id="life">
       <h2>Beyond work</h2>
       <div class="langs life">
+        <div class="life-col">
           <div class="lang"><strong>Marine biology</strong>
-          <span>Species identification, <i><iNaturalist</i>, books</span>
-          <span>Marine biology conferences</span>
-          <span>Scientific articles on sharks, cetaceans, fishes</span>
-          <span>Documentaries</span>
+            <span>Species identification, <i>iNaturalist</i>, books</span>
+            <span>Marine biology conferences</span>
+            <span>Scientific articles on sharks, cetaceans, fishes</span>
+            <span>Documentaries</span>
+          </div>
+          <div class="lang"><strong>Diving</strong>
+            <span>Level 2 diver, FFESSM</span>
+            <span>Level 1 marine biology diver, FFESSM</span>
+            <span>Freediving and snorkeling</span>
+            <span>Underwater photography</span>
+          </div>
+          <div class="lang"><strong>Other outdoor interests</strong>
+            <span>Drone flying</span>
+          </div>
         </div>
-        <div class="lang"><strong>Licences &amp; certifications</strong>
-          <span>Driving licence (B)</span>
-          <span>Coastal boating licence</span>
-          <span>PSC1 first aid</span>
-        </div>
-        <div class="lang"><strong>Diving</strong>
-          <span>Level 2 diver, FFESSM</span>
-          <span>Level 1 marine biology diver, FFESSM</span>
-          <span>Freediving ans snorkeling</span>
-          <span>Underwater photography</span>
-        </div>
-        <div class="lang"><strong>Sports</strong>
-          <span>Volleyball, regional women's team</span>
-          <span>Horse riding, Galop 6, dressage competitons</span>
-          <span>Snowboarding</span>
-          <span>Hiking</span>
-        </div>
-        <div class="lang"><strong>Other outdoor interests</strong>
-          <span>Drone flying</span>
-        </div>
-        <div class="lang"><strong>Other indoor interests</strong>
-          <span>Reading: science fiction and fantasy</span>
-          <span>Organisation of trips and missions</span>
+        <div class="life-col">
+          <div class="lang"><strong>Licences &amp; certifications</strong>
+            <span>Driving licence (B)</span>
+            <span>Coastal boating licence</span>
+            <span>PSC1 first aid</span>
+          </div>
+          <div class="lang"><strong>Sports</strong>
+            <span>Volleyball, regional women's team</span>
+            <span>Horse riding, Galop 6, dressage competitons</span>
+            <span>Snowboarding</span>
+            <span>Hiking</span>
+          </div>
+          <div class="lang"><strong>Other indoor interests</strong>
+            <span>Reading: science fiction and fantasy</span>
+            <span>Organisation of trips and missions</span>
+          </div>
         </div>
       </div>
     </section>
