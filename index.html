@@ -305,7 +305,8 @@
       position: absolute; left: 50%; transform: translate(-50%, -50%);
       width: 56px; height: 72px;
       background: url('dessin_apneiste.png') center/contain no-repeat;
-      opacity: 0.85;
+      z-index: 2; /* drawn over the bar, its dots and their labels */
+      pointer-events: none; /* clicks still reach the dots underneath */
     }
     .progress a {
       position: absolute; left: 50%; transform: translate(-50%, -50%);
@@ -316,7 +317,7 @@
     .progress a.passed { background: var(--accent); border-color: var(--accent); }
     .progress a span {
       position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
-      white-space: nowrap; font-size: 0.8rem; font-weight: 500;
+      white-space: nowrap; font-size: 0.92rem; font-weight: 500;
       color: var(--muted); transition: color .2s;
     }
     .progress a.active span { color: var(--accent); font-weight: 600; }
