@@ -122,7 +122,6 @@
     .carousel .dots span.active { background: #fff; }
 
     main { padding: 48px 0 24px; }
-    main.wrap { max-width: 920px; }
     section { margin-bottom: 56px; }
     h2 {
       font-family: "Fraunces", Georgia, serif;
@@ -136,20 +135,37 @@
     .timeline { list-style: none; }
     .item {
       display: grid;
-      grid-template-columns: 170px minmax(0, 1fr) 96px;
+      grid-template-columns: 170px minmax(0, 1fr);
       gap: 4px 24px;
       padding: 18px 0;
       border-bottom: 1px solid var(--line);
+      position: relative;
     }
     .item:last-child { border-bottom: 0; }
-    /* Organisation logos on the right of each item */
-    .logos { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding-top: 2px; }
+    /* Organisation logos, just past the right end of the grey lines */
+    .logos {
+      position: absolute; left: calc(100% + 24px); top: 18px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+    }
     .logos img {
-      display: block; width: 96px; height: 54px; object-fit: contain;
-      background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px;
+      display: block; width: 112px; height: 60px;
+      object-fit: contain; object-position: left center;
+      mix-blend-mode: multiply; /* white logo backgrounds blend into the page */
     }
     /* Square source files with wide empty margins: crop to the middle band */
-    .logos img.cover { padding: 0; object-fit: cover; }
+    .logos img.cover { object-fit: cover; object-position: center; }
+    @media (prefers-color-scheme: dark) {
+      /* Most logos are dark: keep them on a small white card in dark mode */
+      .logos img { mix-blend-mode: normal; background: #fff; border-radius: 6px; padding: 4px; }
+      .logos img.cover { padding: 0; }
+    }
+    /* Not enough room beside the content: logos go back inside the item */
+    @media (max-width: 1180px) {
+      .item { grid-template-columns: 170px minmax(0, 1fr) auto; }
+      .logos { position: static; align-items: flex-end; padding-top: 2px; }
+      .logos img { width: 100px; height: 54px; object-position: right center; }
+      .logos img.cover { object-position: center; }
+    }
     .when { color: var(--muted); font-size: 0.88rem; font-weight: 500; padding-top: 2px; }
     .what h3 { font-size: 1.05rem; font-weight: 600; display: flex; align-items: baseline; gap: 8px; }
     .what h3 a { font-size: 0.75rem; font-weight: 400; opacity: 0.6; transition: opacity .2s; }
@@ -297,7 +313,7 @@
       .hero-inner { grid-template-columns: 1fr; gap: 28px; }
       .item { grid-template-columns: 1fr; }
       .logos { flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 8px; }
-      .logos img { width: 80px; height: 46px; }
+      .logos img { width: 84px; height: 46px; object-position: left center; }
     }
   </style>
 </head>
@@ -746,7 +762,12 @@
     // Header photo carousel
     (function () {
       var root = document.querySelector('.carousel');
-      var slides = root.querySelectorAll('.slide');
+      var slides = Array.prototype.slice.call(root.querySelectorAll('.slide'));
+      // Shuffle the photos so each visit shows them in a random order
+      for (var j = slides.length - 1; j > 0; j--) {
+        var r = Math.floor(Math.random() * (j + 1));
+        var tmp = slides[j]; slides[j] = slides[r]; slides[r] = tmp;
+      }
       var backdrop = root.querySelector('.backdrop');
       var dotsBox = root.querySelector('.dots');
       function load(i) {
