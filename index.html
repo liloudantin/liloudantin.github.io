@@ -90,8 +90,14 @@
       background: rgba(255,255,255,0.08);
       box-shadow: 0 12px 32px rgba(0,0,0,0.25);
     }
+    /* Photos are shown whole (contain) over a blurred copy, so portrait
+       and panoramic shots are not cropped */
+    .carousel .backdrop {
+      position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px);
+      object-fit: cover; filter: blur(18px) brightness(0.7);
+    }
     .carousel .slide {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
       opacity: 0; transition: opacity .5s ease;
     }
     .carousel .slide.active { opacity: 1; }
@@ -116,6 +122,7 @@
     .carousel .dots span.active { background: #fff; }
 
     main { padding: 48px 0 24px; }
+    main.wrap { max-width: 920px; }
     section { margin-bottom: 56px; }
     h2 {
       font-family: "Fraunces", Georgia, serif;
@@ -129,12 +136,20 @@
     .timeline { list-style: none; }
     .item {
       display: grid;
-      grid-template-columns: 170px 1fr;
+      grid-template-columns: 170px minmax(0, 1fr) 96px;
       gap: 4px 24px;
       padding: 18px 0;
       border-bottom: 1px solid var(--line);
     }
     .item:last-child { border-bottom: 0; }
+    /* Organisation logos on the right of each item */
+    .logos { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding-top: 2px; }
+    .logos img {
+      display: block; width: 96px; height: 54px; object-fit: contain;
+      background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px;
+    }
+    /* Square source files with wide empty margins: crop to the middle band */
+    .logos img.cover { padding: 0; object-fit: cover; }
     .when { color: var(--muted); font-size: 0.88rem; font-weight: 500; padding-top: 2px; }
     .what h3 { font-size: 1.05rem; font-weight: 600; display: flex; align-items: baseline; gap: 8px; }
     .what h3 a { font-size: 0.75rem; font-weight: 400; opacity: 0.6; transition: opacity .2s; }
@@ -266,7 +281,7 @@
     .progress a.active span { color: var(--accent); font-weight: 600; }
     .progress a.active { box-shadow: 0 0 0 4px var(--accent-soft); }
     .progress a:hover span { color: var(--text); }
-    @media (max-width: 1200px) {
+    @media (max-width: 1320px) {
       .progress { left: 6px; }
       .progress a { width: 9px; height: 9px; }
       .progress a span { display: none; }
@@ -281,6 +296,8 @@
       header.hero { padding: 56px 16px 76px; }
       .hero-inner { grid-template-columns: 1fr; gap: 28px; }
       .item { grid-template-columns: 1fr; }
+      .logos { flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+      .logos img { width: 80px; height: 46px; }
     }
   </style>
 </head>
@@ -298,9 +315,22 @@
           <li><a href="https://www.linkedin.com/in/lilou-dantin-65a9781b5/">LinkedIn ↗</a></li>
         </ul>
       </div>
-      <!-- Photo carousel: add one <img class="slide"> per photo -->
+      <!-- Photo carousel: add one <img class="slide" data-src="photos/..."> per photo.
+           Photos are only downloaded when they are about to be shown. -->
       <div class="carousel" aria-roledescription="carousel" aria-label="Photos">
-        <img class="slide" src="photos/IMG_0248.jpg" alt="">
+        <img class="backdrop" alt="" aria-hidden="true">
+        <img class="slide" data-src="photos/0aea7b54-b003-4e76-98b3-f1dc8e0536ea.jpg" alt="">
+        <img class="slide" data-src="photos/26f6e9e9-ff51-4d62-874b-1e5a0efaeca9.jpg" alt="">
+        <img class="slide" data-src="photos/77e8be2f-3cc2-4846-b6eb-ec3c7cf27ef5.jpg" alt="">
+        <img class="slide" data-src="photos/a7d01b5b-2336-48ed-823b-ed67662d3546.jpg" alt="">
+        <img class="slide" data-src="photos/e12dedcd-64f8-4c97-9243-e0aeee2c8bf7.jpg" alt="">
+        <img class="slide" data-src="photos/ed5294ea-83e1-4b22-b0c4-ae3e3b17d9f4.jpg" alt="">
+        <img class="slide" data-src="photos/GPTempDownload(1).jpg" alt="">
+        <img class="slide" data-src="photos/GPTempDownload(2).jpg" alt="">
+        <img class="slide" data-src="photos/GPTempDownload%203.jpg" alt="">
+        <img class="slide" data-src="photos/GPTempDownload.jpg" alt="">
+        <img class="slide" data-src="photos/humpback_whale.jpg" alt="Humpback whale">
+        <img class="slide" data-src="photos/IMG_9662.JPG" alt="">
         <button class="prev" type="button" aria-label="Previous photo">&#8249;</button>
         <button class="next" type="button" aria-label="Next photo">&#8250;</button>
         <div class="dots"></div>
@@ -327,6 +357,11 @@
             <p>Advisors: Pr. Hervé GLOTIN, Dr. Adeline PAIEMENT, Dr. Sebastian PARIS, Stéphane Jespers</p>
             <div class="place">Toulon, France</div>
           </div>
+          <div class="logos">
+            <img class="cover" src="logos/LIS_couleur-1024x1024.png" alt="LIS">
+            <img class="cover" src="logos/CIAN_short_bleu-1024x1024.png" alt="CIAN">
+            <img src="logos/PNPC.png" alt="Parc National de Port-Cros">
+          </div>
         </li>
         <li class="item">
           <div class="when">Jan 2025 – Apr 2025</div>
@@ -334,6 +369,10 @@
             <h3>Bioacoustics research engineer </h3>
             <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
             <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>            <div class="place">Toulon, France</div>
+          </div>
+          <div class="logos">
+            <img class="cover" src="logos/LIS_couleur-1024x1024.png" alt="LIS">
+            <img class="cover" src="logos/CIAN_short_bleu-1024x1024.png" alt="CIAN">
           </div>
         </li>
         <li class="item">
@@ -344,6 +383,9 @@
             <p>Artificial intelligence applied to coral reef biophony.<br>Automatic detection of parrotfish <i>grazing</i> and grouper <i>growls</i>. </p>
             <div class="place">Saint-Denis, Réunion Island</div>
           </div>
+          <div class="logos">
+            <img src="logos/reefpulse.png" alt="Reef Pulse">
+          </div>
         </li>
         <li class="item">
           <div class="when">Jul – Aug 2023</div>
@@ -352,6 +394,9 @@
             <div class="org"><a href="https://www.aquarium.nc/">Aquarium des Lagons <span class="badge-link">↗</span></a></div>
             <p>Population monitoring of <em>Stegostoma tigrinum</em> (leopard shark).</p>
             <div class="place">Nouméa, New Caledonia</div>
+          </div>
+          <div class="logos">
+            <img src="logos/aquarium_des_longs_blanc.jpeg" alt="Aquarium des Lagons">
           </div>
         </li>
       </ul>
@@ -368,6 +413,9 @@
             <p>Real-time recording and localisation of sperm whales and others cetaceans using passive acoustics. Supervision of eco-volunteers in the visual and acoustic identification of cetaceans.</p>
             <div class="place">Mediterranean Sea</div>
           </div>
+          <div class="logos">
+            <img src="logos/l181_grand.jpg" alt="Longitude 181">
+          </div>
         </li>
         <li class="item">
           <div class="when">May 2026</div>
@@ -378,6 +426,10 @@
             <p><span class="badge-organisation">Organisation</span> Acoustic propagation experiments and calibration protocols for hydrophones with active acoustics.</p>
           <div class="place">Port Porthuau, Mediterranean Sea</div>
           </div>
+          <div class="logos">
+            <img class="cover" src="logos/LIS_couleur-1024x1024.png" alt="LIS">
+            <img class="cover" src="logos/CIAN_short_bleu-1024x1024.png" alt="CIAN">
+          </div>
         </li>
         <li class="item">
           <div class="when">Mar 2026 - present </div>
@@ -385,6 +437,9 @@
             <h3>Grand Large Missions</h3>
             <div class="org"><a href="https://www.explore-preserve.org/">Explore et Préserve <span class="badge-org"></span></a></div>
             <div class="place">Mediterranean Sea</div>
+          </div>
+          <div class="logos">
+            <img src="logos/exploreetpreserve_simple.png" alt="Explore et Préserve">
           </div>
         </li>
         <li class="item">
@@ -394,6 +449,9 @@
             <div class="org"><a href="https://www.longitude181.org/">Longitude 181<span class="badge-org">L181</span></a></div>
             <p>Real-time recording and localisation of sperm whales and others cetaceans using passive acoustics.</p>
             <div class="place">Mediterranean Sea</div>
+          </div>
+          <div class="logos">
+            <img src="logos/l181_grand.jpg" alt="Longitude 181">
           </div>
         </li>
         <li class="item">
@@ -406,6 +464,11 @@
             <p>Recording the acoustic signature of different wingfoils.</p>
             <div class="place">Port Hélène, Mediterranean Sea</div>
           </div>
+          <div class="logos">
+            <img class="cover" src="logos/LIS_couleur-1024x1024.png" alt="LIS">
+            <img class="cover" src="logos/CIAN_short_bleu-1024x1024.png" alt="CIAN">
+            <img src="logos/PNPC.png" alt="Parc National de Port-Cros">
+          </div>
         </li>
         <li class="item">
           <div class="when">2024</div>
@@ -414,6 +477,9 @@
             <div class="org"><a href="https://www.globice.org/">Globice <span class="badge-link">↗</span></a></div>
             <p>Deployment of acoustic modules.</p>
             <div class="place">La Réunion, France</div>
+          </div>
+          <div class="logos">
+            <img src="logos/globice_grand.webp" alt="Globice">
           </div>
         </li>
       </ul>
@@ -431,6 +497,10 @@
             <p><span class="badge-talk">Talk</span>Whale ecology of Saint Lawrence, underwater noise, AI in acoustics and imaging, and conservation of belugas and other cetaceans.</p>
             <div class="place">Tadoussac, Quebec, Canada</div>
           </div>
+          <div class="logos">
+            <img src="logos/UQO.png" alt="Université du Québec en Outaouais">
+            <img src="logos/gremm.jpeg" alt="GREMM">
+          </div>
         </li>
         <li class="item">
           <div class="when">Dec 2025</div>
@@ -439,6 +509,10 @@
             <div class="org"><a href="https://www.lis-lab.fr/">Laboratoire d'Informatique et Systèmes <span class="badge-org">LIS</span></a></div>
             <div class="org"><a href="https://cian.lis-lab.fr/">International Center of Artificial Intelligence in Natural Acoustics <span class="badge-org">CIAN</span></a></div>
             <p><a href="https://youtu.be/_iNO20PW4OE?si=zwM6UHAoK1xLQpjb&t=1124"><span class="badge-talk">Talk</span></a> <span class="badge-organisation">Organisation</span> Continuous passive acoustic monitoring of marine megafauna in the Mediterranean Sea, the Azores and off Norway.</p>
+          </div>
+          <div class="logos">
+            <img class="cover" src="logos/LIS_couleur-1024x1024.png" alt="LIS">
+            <img class="cover" src="logos/CIAN_short_bleu-1024x1024.png" alt="CIAN">
           </div>
         </li>
         <li class="item">
@@ -450,6 +524,10 @@
             <div class="org">Office français de la biodiversité <span class="badge-org">OFB</span></div>
             <p><span class="badge-organisation">Organisation</span> Update of knowledge and studies on human activities generating underwater noise, their emissions, their impacts and trends in their evolution.</p>
           </div>
+          <div class="logos">
+            <img src="logos/dgampa.jpeg" alt="DGAMPA">
+            <img src="logos/OFB.jpg" alt="Office français de la biodiversité">
+          </div>
         </li>
         <li class="item">
           <div class="when">Jun 2025</div>
@@ -458,12 +536,19 @@
             <div class="org">United Nations Ocean Conference 3 <span class="badge-org">UNOC3</span></div>
             <p><a href="https://sabiod.lis-lab.fr/pub/SEGAMAS/DANTIN_SEGAMAS_poster_OOS2025_french.pdf"><span class="badge-poster">Poster</span></a><a href="https://meetingorganizer.copernicus.org/OOS2025/OOS2025-1564.html"><span class="badge-abstract">Abstract</span></a></p>
           </div>
+          <div class="logos">
+            <img src="logos/oosc.png" alt="One Ocean Science Congress">
+            <img src="logos/UNOC.webp" alt="UN Ocean Conference 2025">
+          </div>
         </li>
         <li class="item">
           <div class="when">2025</div>
           <div class="what">
             <h3>Journées des jeunes bioacousticiens <span class="badge-org">JJBA</span></h3>
             <p><a href="https://cian.lis-lab.fr/jjba2025/"><span class="badge-poster">Poster</span></a></p>
+          </div>
+          <div class="logos">
+            <img src="logos/JJBA.png" alt="JJBA">
           </div>
         </li>
         <li class="item">
@@ -472,6 +557,10 @@
             <h3>National Committee of the Pelagos Sanctuary</h3>
             <div class="org"><a href="https://portcros-parcnational.fr/">Parc National de Port-Cros <span class="badge-org">PNPC</span></a></div>
             <p><span class="badge-talk">Talk</span></p>
+          </div>
+          <div class="logos">
+            <img src="logos/pelagos.png" alt="Pelagos Sanctuary">
+            <img src="logos/PNPC.png" alt="Parc National de Port-Cros">
           </div>
         </li>
       </ul>
@@ -488,6 +577,9 @@
             <p>Major Digital &amp; Living Systems, in communicating systems and connected objects.</p>
             <div class="place">Rennes, France</div>
           </div>
+          <div class="logos">
+            <img src="logos/centralesupelec.png" alt="CentraleSupélec">
+          </div>
         </li>
         <li class="item">
           <div class="when">2019 – 2024</div>
@@ -497,6 +589,9 @@
             <p>General engineering curriculum, then specialisation in Energy and Environment.</p>
             <div class="place">Sceaux / Cachan, then Montpellier, France</div>
           </div>
+          <div class="logos">
+            <img src="logos/EPF.png" alt="EPF Engineering School">
+          </div>
         </li>
         <li class="item">
           <div class="when">Sep 2022 – Jan 2023</div>
@@ -504,6 +599,9 @@
             <h3>Erasmus semester</h3>
             <div class="org"><a href="https://www.bme.hu/">Budapest University of Technology and Economics <span class="badge-org">BME</span></a></div>
             <div class="place">Budapest, Hungary</div>
+          </div>
+          <div class="logos">
+            <img src="logos/bme.png" alt="Budapest University of Technology and Economics">
           </div>
         </li>
         <li class="item">
@@ -514,6 +612,9 @@
             <div class="org"><a href="https://iucn.org/fr">Union internationale pour la conservation de la nature <span class="badge-org">IUCN</span></a></div>
             <p>New technologies for protected areas.</p>
             <div class="place">Online</div>
+          </div>
+          <div class="logos">
+            <img src="logos/papaco.jpeg" alt="IUCN PAPACO">
           </div>
         </li>
       </ul>
@@ -530,6 +631,9 @@
             <p>Introducing middle and high school students to bioacoustics.</p>
             <div class="place">Toulon, France</div>
           </div>
+          <div class="logos">
+            <img class="cover" src="logos/TOULON_couleur-1024x1024.png" alt="Université de Toulon">
+          </div>
         </li>
         <li class="item">
           <div class="when"></div>
@@ -539,6 +643,9 @@
             <div class="org">Espace Mer</div>
             <p>Educating high school students on a one-day mission to meet the cetacean species of the Mediterranean.</p>
             <div class="place">Mediterranean Sea</div>
+          </div>
+          <div class="logos">
+            <img src="logos/exploreetpreserve_simple.png" alt="Explore et Préserve">
           </div>
         </li>
       </ul>
@@ -563,6 +670,9 @@
             <div class="org"><a href="https://www.epf.fr/">EPF Engineering School <span class="badge-org">EPF</span></a></div>
             <p>Innovation in large-scale CO₂ storage using microalgae.</p>
             <div class="place">Montpellier, France</div>
+          </div>
+          <div class="logos">
+            <img src="logos/EPF.png" alt="EPF Engineering School">
           </div>
         </li>
       </ul>
@@ -637,7 +747,13 @@
     (function () {
       var root = document.querySelector('.carousel');
       var slides = root.querySelectorAll('.slide');
+      var backdrop = root.querySelector('.backdrop');
       var dotsBox = root.querySelector('.dots');
+      function load(i) {
+        var s = slides[(i + slides.length) % slides.length];
+        if (!s.getAttribute('src')) s.setAttribute('src', s.getAttribute('data-src'));
+        return s;
+      }
       var current = 0;
       var dots = Array.prototype.map.call(slides, function () {
         var d = document.createElement('span');
@@ -646,6 +762,8 @@
       });
       function show(i) {
         current = (i + slides.length) % slides.length;
+        backdrop.src = load(current).getAttribute('src');
+        load(current + 1); load(current - 1); // preload neighbours
         Array.prototype.forEach.call(slides, function (s, k) { s.classList.toggle('active', k === current); });
         dots.forEach(function (d, k) { d.classList.toggle('active', k === current); });
       }
