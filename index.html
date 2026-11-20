@@ -271,6 +271,11 @@
        as the timeline logos, just past the right end of the content */
     .langs { position: relative; }
     .logos.side-logos { top: 0; }
+    /* Tie a logo group to one row of cards: that row becomes its reference box */
+    .logos.side-logos.row-1 { grid-row: 1; grid-column: 1 / -1; }
+    .logos.side-logos.row-2 { grid-row: 2; grid-column: 1 / -1; }
+    /* Wordmark centred in a square file: a lower box keeps it level with the card top */
+    .logos img.flat { height: 34px; }
     /* Square app icons, two per row */
     .logos.side-logos.icons { flex-direction: row; flex-wrap: wrap; width: 112px; gap: 12px; }
     .logos.side-logos.icons img { width: 48px; height: 48px; object-position: center; border-radius: 8px; }
@@ -284,6 +289,7 @@
         flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 4px;
       }
       .logos.side-logos img { object-position: center; }
+      .logos.side-logos.row-1, .logos.side-logos.row-2 { grid-row: auto; grid-column: auto; }
     }
 
     /* Vertical progress bar with freediver icon */
@@ -773,8 +779,11 @@
           <span>Reading: science fiction and fantasy</span>
           <span>Organisation of trips and missions</span>
         </div>
-        <div class="logos side-logos">
-          <img class="cover" src="logos/inaturalist.png" alt="iNaturalist" title="iNaturalist">
+        <!-- row-1 / row-2: logos start level with that row of cards -->
+        <div class="logos side-logos row-1">
+          <img class="cover flat" src="logos/inaturalist.png" alt="iNaturalist" title="iNaturalist">
+        </div>
+        <div class="logos side-logos row-2">
           <img src="logos/FFESSM.webp" alt="FFESSM" title="FFESSM">
           <img src="logos/F%C3%A9d%C3%A9ration_fran%C3%A7aise_de_Volley.svg" alt="Fédération française de volley" title="Fédération française de volley">
           <img class="cover" src="logos/ffe.webp" alt="Fédération française d'équitation" title="Fédération française d'équitation">
