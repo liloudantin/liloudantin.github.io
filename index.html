@@ -121,15 +121,13 @@
     }
     .carousel .dots span.active { background: #fff; }
     /* Photo description, taken from the slide's data-caption attribute */
-    .carousel .caption {
-      position: absolute; left: 0; right: 0; bottom: 0;
-      padding: 36px 20px 26px; text-align: center;
-      color: #fff; font-size: 0.9rem; line-height: 1.35;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-      background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
-      pointer-events: none; transition: opacity .3s ease;
+    .photos { margin: 0; min-width: 0; }
+    /* Room for two lines is kept so the page does not jump between photos */
+    .photos figcaption {
+      margin-top: 10px; min-height: 2.7em; padding: 0 8px;
+      text-align: center; color: #fff; opacity: 0.85;
+      font-size: 0.9rem; line-height: 1.35;
     }
-    .carousel .caption:empty { opacity: 0; }
 
     main { padding: 48px 0 24px; }
     section { margin-bottom: 56px; }
@@ -380,6 +378,7 @@
       <!-- Photo carousel: add one <img class="slide" data-src="photos/..." data-caption="..."> per photo.
            data-caption is the description shown under the photo (leave it empty for none).
            Photos are only downloaded when they are about to be shown. -->
+      <figure class="photos">
       <div class="carousel" aria-roledescription="carousel" aria-label="Photos">
         <img class="backdrop" alt="" aria-hidden="true">
         <img class="slide" data-src="photos/0aea7b54-b003-4e76-98b3-f1dc8e0536ea.jpg" data-caption="WhaleWay6 mission with Longitude 181" alt="">
@@ -396,9 +395,10 @@
         <img class="slide" data-src="photos/IMG_9662.JPG" data-caption="Graduation ceremony at CentraleSupelec" alt="">
         <button class="prev" type="button" aria-label="Previous photo">&#8249;</button>
         <button class="next" type="button" aria-label="Next photo">&#8250;</button>
-        <p class="caption" aria-live="polite"></p>
         <div class="dots"></div>
       </div>
+      <figcaption class="caption" aria-live="polite"></figcaption>
+      </figure>
     </div>
     <svg class="waves" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
       <path fill="var(--bg)" d="M0,32 C240,64 480,0 720,24 C960,48 1200,8 1440,30 L1440,60 L0,60 Z"/>
@@ -835,7 +835,7 @@
       }
       var backdrop = root.querySelector('.backdrop');
       var dotsBox = root.querySelector('.dots');
-      var caption = root.querySelector('.caption');
+      var caption = document.querySelector('.photos .caption');
       // Use the description as alt text when no alt is given
       slides.forEach(function (s) {
         if (!s.getAttribute('alt')) s.setAttribute('alt', s.getAttribute('data-caption') || '');
@@ -861,7 +861,7 @@
       }
       // Autoplay: advance every DELAY ms; clicking an arrow restarts the countdown,
       // and hovering the carousel pauses it.
-      var DELAY = 3000;
+      var DELAY = 2000;
       var timer = null;
       var hovered = false;
       function stop() {
