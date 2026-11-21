@@ -120,6 +120,16 @@
       transition: background .2s;
     }
     .carousel .dots span.active { background: #fff; }
+    /* Photo description, taken from the slide's data-caption attribute */
+    .carousel .caption {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 36px 20px 26px; text-align: center;
+      color: #fff; font-size: 0.9rem; line-height: 1.35;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+      pointer-events: none; transition: opacity .3s ease;
+    }
+    .carousel .caption:empty { opacity: 0; }
 
     main { padding: 48px 0 24px; }
     section { margin-bottom: 56px; }
@@ -367,24 +377,26 @@
           <li><a href="https://www.linkedin.com/in/lilou-dantin-65a9781b5/">LinkedIn ↗</a></li>
         </ul>
       </div>
-      <!-- Photo carousel: add one <img class="slide" data-src="photos/..."> per photo.
+      <!-- Photo carousel: add one <img class="slide" data-src="photos/..." data-caption="..."> per photo.
+           data-caption is the description shown under the photo (leave it empty for none).
            Photos are only downloaded when they are about to be shown. -->
       <div class="carousel" aria-roledescription="carousel" aria-label="Photos">
         <img class="backdrop" alt="" aria-hidden="true">
-        <img class="slide" data-src="photos/0aea7b54-b003-4e76-98b3-f1dc8e0536ea.jpg" alt="">
-        <img class="slide" data-src="photos/26f6e9e9-ff51-4d62-874b-1e5a0efaeca9.jpg" alt="">
-        <img class="slide" data-src="photos/77e8be2f-3cc2-4846-b6eb-ec3c7cf27ef5.jpg" alt="">
-        <img class="slide" data-src="photos/a7d01b5b-2336-48ed-823b-ed67662d3546.jpg" alt="">
-        <img class="slide" data-src="photos/e12dedcd-64f8-4c97-9243-e0aeee2c8bf7.jpg" alt="">
-        <img class="slide" data-src="photos/ed5294ea-83e1-4b22-b0c4-ae3e3b17d9f4.jpg" alt="">
-        <img class="slide" data-src="photos/GPTempDownload(1).jpg" alt="">
-        <img class="slide" data-src="photos/GPTempDownload(2).jpg" alt="">
-        <img class="slide" data-src="photos/GPTempDownload%203.jpg" alt="">
-        <img class="slide" data-src="photos/GPTempDownload.jpg" alt="">
-        <img class="slide" data-src="photos/humpback_whale.jpg" alt="Humpback whale">
-        <img class="slide" data-src="photos/IMG_9662.JPG" alt="">
+        <img class="slide" data-src="photos/0aea7b54-b003-4e76-98b3-f1dc8e0536ea.jpg" data-caption="WhaleWay6 mission with Longitude 181" alt="">
+        <img class="slide" data-src="photos/26f6e9e9-ff51-4d62-874b-1e5a0efaeca9.jpg" data-caption="Talk at EUROPAM seminar" alt="">
+        <img class="slide" data-src="photos/77e8be2f-3cc2-4846-b6eb-ec3c7cf27ef5.jpg" data-caption="Listening of a sperm whale clicking during SP12 mission ©Masurel Brigitte" alt="">
+        <img class="slide" data-src="photos/a7d01b5b-2336-48ed-823b-ed67662d3546.jpg" data-caption="Spectrogram of a sperm whale clicking during SP12 mission" alt="">
+        <img class="slide" data-src="photos/e12dedcd-64f8-4c97-9243-e0aeee2c8bf7.jpg" data-caption="Searching sperm whales during WhaleWay6 mission ©Sarano François " alt="">
+        <img class="slide" data-src="photos/ed5294ea-83e1-4b22-b0c4-ae3e3b17d9f4.jpg" data-caption="Team of SP12 mission" alt="">
+        <img class="slide" data-src="photos/GPTempDownload(1).jpg" data-caption="" alt="Zebra shark during field mission at Aquarium des Lagons ©Dantin Lilou">
+        <img class="slide" data-src="photos/GPTempDownload(2).jpg" data-caption="" alt="Bluefin trevally in Hermitage Lagon in Reunion Island ©Dantin Lilou">
+        <img class="slide" data-src="photos/GPTempDownload%203.jpg" data-caption="" alt="Taking photo ID of a zebra shark during field mission at Aquarium des Lagon ©Lassauce Hugo">
+        <img class="slide" data-src="photos/GPTempDownload.jpg" data-caption="" alt="Clown fish during a dive at Manggis in Bali ©Dantin Lilou">
+        <img class="slide" data-src="photos/humpback_whale.jpg" data-caption="Humpback whale during snorkeling in Reunion Island ©Dantin Lilou" alt="Humpback whale">
+        <img class="slide" data-src="photos/IMG_9662.JPG" data-caption="Graduation ceremony at CentraleSupelec" alt="">
         <button class="prev" type="button" aria-label="Previous photo">&#8249;</button>
         <button class="next" type="button" aria-label="Next photo">&#8250;</button>
+        <p class="caption" aria-live="polite"></p>
         <div class="dots"></div>
       </div>
     </div>
@@ -823,6 +835,11 @@
       }
       var backdrop = root.querySelector('.backdrop');
       var dotsBox = root.querySelector('.dots');
+      var caption = root.querySelector('.caption');
+      // Use the description as alt text when no alt is given
+      slides.forEach(function (s) {
+        if (!s.getAttribute('alt')) s.setAttribute('alt', s.getAttribute('data-caption') || '');
+      });
       function load(i) {
         var s = slides[(i + slides.length) % slides.length];
         if (!s.getAttribute('src')) s.setAttribute('src', s.getAttribute('data-src'));
@@ -837,6 +854,7 @@
       function show(i) {
         current = (i + slides.length) % slides.length;
         backdrop.src = load(current).getAttribute('src');
+        caption.textContent = slides[current].getAttribute('data-caption') || '';
         load(current + 1); load(current - 1); // preload neighbours
         Array.prototype.forEach.call(slides, function (s, k) { s.classList.toggle('active', k === current); });
         dots.forEach(function (d, k) { d.classList.toggle('active', k === current); });
