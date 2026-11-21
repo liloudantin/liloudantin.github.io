@@ -830,9 +830,24 @@
         Array.prototype.forEach.call(slides, function (s, k) { s.classList.toggle('active', k === current); });
         dots.forEach(function (d, k) { d.classList.toggle('active', k === current); });
       }
-      root.querySelector('.prev').addEventListener('click', function () { show(current - 1); });
-      root.querySelector('.next').addEventListener('click', function () { show(current + 1); });
+      // Autoplay: advance every DELAY ms; clicking an arrow restarts the countdown,
+      // and hovering the carousel pauses it.
+      var DELAY = 5000;
+      var timer = null;
+      var hovered = false;
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+      function start() {
+        stop();
+        if (!hovered) timer = setInterval(function () { show(current + 1); }, DELAY);
+      }
+      root.querySelector('.prev').addEventListener('click', function () { show(current - 1); start(); });
+      root.querySelector('.next').addEventListener('click', function () { show(current + 1); start(); });
+      root.addEventListener('mouseenter', function () { hovered = true; stop(); });
+      root.addEventListener('mouseleave', function () { hovered = false; start(); });
       show(0);
+      start();
     })();
 
     (function () {
