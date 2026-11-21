@@ -84,14 +84,11 @@
       opacity: 0.85;
     }
 
-    /* Photo carousel in the header */
     .carousel {
       position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden;
       background: rgba(255,255,255,0.08);
       box-shadow: 0 12px 32px rgba(0,0,0,0.25);
     }
-    /* Photos are shown whole (contain) over a blurred copy, so portrait
-       and panoramic shots are not cropped */
     .carousel .backdrop {
       position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px);
       object-fit: cover; filter: blur(18px) brightness(0.7);
@@ -120,9 +117,7 @@
       transition: background .2s;
     }
     .carousel .dots span.active { background: #fff; }
-    /* Photo description, taken from the slide's data-caption attribute */
     .photos { margin: 0; min-width: 0; }
-    /* Room for two lines is kept so the page does not jump between photos */
     .photos figcaption {
       margin-top: 10px; min-height: 2.7em; padding: 0 8px;
       text-align: center; color: #fff; opacity: 0.85;
@@ -150,7 +145,6 @@
       position: relative;
     }
     .item:last-child { border-bottom: 0; }
-    /* Organisation logos, just past the right end of the grey lines */
     .logos {
       position: absolute; left: calc(100% + 24px); top: 18px;
       display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
@@ -158,16 +152,13 @@
     .logos img {
       display: block; width: 112px; height: 60px;
       object-fit: contain; object-position: left center;
-      mix-blend-mode: multiply; /* white logo backgrounds blend into the page */
+      mix-blend-mode: multiply;
     }
-    /* Square source files with wide empty margins: crop to the middle band */
     .logos img.cover { object-fit: cover; object-position: center; }
     @media (prefers-color-scheme: dark) {
-      /* Most logos are dark: keep them on a small white card in dark mode */
       .logos img { mix-blend-mode: normal; background: #fff; border-radius: 6px; padding: 4px; }
       .logos img.cover { padding: 0; }
     }
-    /* Not enough room beside the content: logos go back inside the item */
     @media (max-width: 1180px) {
       .item { grid-template-columns: 170px minmax(0, 1fr) auto; }
       .logos { position: static; align-items: flex-end; padding-top: 2px; }
@@ -285,22 +276,16 @@
     .life .lang span { display: block; }
     .life .lang span.sub { color: var(--text); font-weight: 600; margin-top: 10px; }
 
-    /* Logos of the card sections (Tools and skills, Beyond work): same column
-       as the timeline logos, just past the right end of the content */
     .langs { position: relative; }
     .logos.side-logos { top: 0; }
-    /* Tie a logo group to one row of cards: that row becomes its reference box */
     .logos.side-logos.row-1 { grid-row: 1; grid-column: 1 / -1; }
     .logos.side-logos.row-2 { grid-row: 2; grid-column: 1 / -1; }
-    /* Wordmark centred in a square file: a lower box keeps it level with the card top */
     .logos img.flat { height: 34px; }
-    /* Square app icons, two per row */
     .logos.side-logos.icons { flex-direction: row; flex-wrap: wrap; width: 112px; gap: 12px; }
     .logos.side-logos.icons img { width: 48px; height: 48px; object-position: center; border-radius: 8px; }
     @media (prefers-color-scheme: dark) {
       .logos img.mono { filter: invert(1); background: none; }
     }
-    /* Not enough room beside the content: a row of logos under the cards */
     @media (max-width: 1180px) {
       .logos.side-logos, .logos.side-logos.icons {
         grid-column: 1 / -1; width: auto;
@@ -310,7 +295,6 @@
       .logos.side-logos.row-1, .logos.side-logos.row-2 { grid-row: auto; grid-column: auto; }
     }
 
-    /* Vertical progress bar with freediver icon */
     .progress {
       position: fixed; left: 28px; top: 24px; bottom: 24px; width: 3px;
       background: var(--line); border-radius: 3px; z-index: 10;
@@ -323,8 +307,8 @@
       position: absolute; left: 50%; transform: translate(-50%, -50%);
       width: 56px; height: 72px;
       background: url('dessin_apneiste.png') center/contain no-repeat;
-      z-index: 2; /* drawn over the bar, its dots and their labels */
-      pointer-events: none; /* clicks still reach the dots underneath */
+      z-index: 2;
+      pointer-events: none;
     }
     .progress a {
       position: absolute; left: 50%; transform: translate(-50%, -50%);
@@ -381,18 +365,24 @@
       <figure class="photos">
       <div class="carousel" aria-roledescription="carousel" aria-label="Photos">
         <img class="backdrop" alt="" aria-hidden="true">
-        <img class="slide" data-src="photos/0aea7b54-b003-4e76-98b3-f1dc8e0536ea.jpg" data-caption="WhaleWay6 mission with Longitude 181" alt="">
-        <img class="slide" data-src="photos/26f6e9e9-ff51-4d62-874b-1e5a0efaeca9.jpg" data-caption="Talk at EUROPAM seminar" alt="">
-        <img class="slide" data-src="photos/77e8be2f-3cc2-4846-b6eb-ec3c7cf27ef5.jpg" data-caption="Listening of a sperm whale clicking during SP12 mission ©Masurel Brigitte" alt="">
-        <img class="slide" data-src="photos/a7d01b5b-2336-48ed-823b-ed67662d3546.jpg" data-caption="Spectrogram of a sperm whale clicking during SP12 mission" alt="">
-        <img class="slide" data-src="photos/e12dedcd-64f8-4c97-9243-e0aeee2c8bf7.jpg" data-caption="Searching sperm whales during WhaleWay6 mission ©Sarano François " alt="">
-        <img class="slide" data-src="photos/ed5294ea-83e1-4b22-b0c4-ae3e3b17d9f4.jpg" data-caption="Team of SP12 mission" alt="">
-        <img class="slide" data-src="photos/GPTempDownload(1).jpg" data-caption="Zebra shark during field mission at Aquarium des Lagons ©Dantin Lilou" alt="">
-        <img class="slide" data-src="photos/GPTempDownload(2).jpg" data-caption="Bluefin trevally in Hermitage Lagon in Reunion Island ©Dantin Lilou" alt="">
-        <img class="slide" data-src="photos/GPTempDownload%203.jpg" data-caption="Taking photo ID of a zebra shark during field mission at Aquarium des Lagon ©Lassauce Hugo" alt="">
-        <img class="slide" data-src="photos/GPTempDownload.jpg" data-caption="Clown fish during a dive at Manggis in Bali ©Dantin Lilou" alt="">
-        <img class="slide" data-src="photos/humpback_whale.jpg" data-caption="Humpback whale during snorkeling in Reunion Island ©Dantin Lilou" alt="">
-        <img class="slide" data-src="photos/IMG_9662.JPG" data-caption="Graduation ceremony at CentraleSupelec" alt="">
+        <img class="slide" data-src="photos/ww6.jpg" data-caption="WhaleWay6 mission with Longitude 181" alt="">
+        <img class="slide" data-src="photos/ww6_end.jpg" data-caption="WhaleWay6 mission with Longitude 181" alt="">
+        <img class="slide" data-src="photos/europam.jpg" data-caption="Talk at EUROPAM seminar" alt="">
+        <img class="slide" data-src="photos/sp12_listening.jpg" data-caption="Listening to a sperm whale clicking during SP12 mission ©Masurel Brigitte" alt="">
+        <img class="slide" data-src="photos/sp12_spectro.jpg" data-caption="Spectrogram of a sperm whale clicking during SP12 mission" alt="">
+        <img class="slide" data-src="photos/ww6_obs.jpg" data-caption="Searching for sperm whales during WhaleWay6 mission ©Sarano François" alt="">
+        <img class="slide" data-src="photos/sp12_team.jpg" data-caption="Team of the SP12 mission" alt="">
+        <img class="slide" data-src="photos/zebrashark.jpg" data-caption="Zebra shark during field mission at Aquarium des Lagons ©Dantin Lilou" alt="">
+        <img class="slide" data-src="photos/caranguebleue.jpg" data-caption="Bluefin trevally in Hermitage Lagoon, Reunion Island ©Dantin Lilou" alt="">
+        <img class="slide" data-src="photos/nc_photoid.jpg" data-caption="Taking photo-ID of a zebra shark during field mission at Aquarium des Lagons ©Lassauce Hugo" alt="">
+        <img class="slide" data-src="photos/clownfish.jpg" data-caption="Clownfish during a dive at Manggis, Bali ©Dantin Lilou" alt="">
+        <img class="slide" data-src="photos/humpbackwhale.jpg" data-caption="Humpback whale during snorkeling in Reunion Island ©Dantin Lilou" alt="">
+        <img class="slide" data-src="photos/centralesupelec.JPG" data-caption="Graduation ceremony at CentraleSupelec" alt="">
+        <img class="slide" data-src="photos/aquarium.jpeg" data-caption="Surgical procedure to tag juvenile zebra sharks ©Gossiun Hugues" alt="">
+        <img class="slide" data-src="photos/la_vie_secrete_de_leo.jpeg" data-caption="Documentary 'La vie secrète de Léo' ©Canal+" alt="">
+        <img class="slide" data-src="photos/unoc.jpg" data-caption="Poster presentation at OOSC UNOC" alt="">
+        <img class="slide" data-src="photos/JJBA.jpeg" data-caption="Poster presentation at JJBA" alt="">
+        <img class="slide" data-src="photos/manipwingfoil.jpeg" data-caption="Listening to the sound signature of a wingfoil during a field mission" alt="">
         <button class="prev" type="button" aria-label="Previous photo">&#8249;</button>
         <button class="next" type="button" aria-label="Next photo">&#8250;</button>
         <div class="dots"></div>
@@ -457,7 +447,7 @@
           <div class="what">
             <h3>Research internship</h3>
             <div class="org"><a href="https://www.aquarium.nc/">Aquarium des Lagons <span class="badge-link">↗</span></a></div>
-            <p>Population monitoring of <em>Stegostoma tigrinum</em> (leopard shark).</p>
+            <p>Population monitoring of <em>Stegostoma tigrinum</em> (leopard/zebra shark).</p>
             <div class="place">Nouméa, New Caledonia</div>
           </div>
           <div class="logos">
